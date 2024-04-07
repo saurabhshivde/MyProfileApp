@@ -1,8 +1,8 @@
-# we will use openjdk 8 with alpine as it is a very small linux distro
-FROM openjdk:8-jre-alpine3.9
+FROM nginx:latest
 
-# copy the packaged jar file into our docker image
-COPY target/demo-0.0.1-SNAPSHOT.jar /demo.jar
+#COPY nginx.conf /etc/nginx/nginx.conf
+COPY . /var/www/html
 
-# set the startup command to execute the jar
-CMD ["java", "-jar", "/demo.jar"]
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
